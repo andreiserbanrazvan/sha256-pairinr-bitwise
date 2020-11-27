@@ -1,0 +1,16 @@
+ //bit op
+                //int seed = y + randomKey << 16 | x + randomKey;
+                //Random.InitState(seed);
+
+                //Cantor pairinr
+                //int seed = (int)(0.5f * (x + y) * (x + y + 1) + y);
+                //Random.InitState(seed);
+
+                //SHA256
+                SHA256 sha = SHA256.Create();
+                byte[] byteResult = sha.ComputeHash(Encoding.ASCII.GetBytes(x.ToString() + y.ToString()));
+                string strResult = System.BitConverter.ToString(byteResult);
+                strResult = "0" + strResult;
+                strResult = strResult.Replace("-", "");
+                System.Numerics.BigInteger intResult = System.Numerics.BigInteger.Parse(
+                    strResult, System.Globalization.NumberStyles.AllowHexSpecifier);
